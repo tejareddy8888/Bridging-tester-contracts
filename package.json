@@ -1,0 +1,51 @@
+{
+  "name": "axelar-tester-kit",
+  "license": "MIT",
+  "version": "2.1.1",
+  "description": "Repo for testing, deploying, and shipping bridging tokens solidity code.",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test test/unit/*.spec.js",
+    "test-staging": "hardhat test test/staging/*.spec.js --network sepolia",
+    "deploy": "hardhat run scripts/deployment/main.js",
+    "lint": "solhint 'contracts/*.sol'",
+    "lint:fix": "solhint 'contracts/**/*.sol' --fix",
+    "format": "prettier --write .",
+    "coverage": "hardhat coverage --solcoverjs ./.solcover.js",
+    "fuzzing": "docker run -it --rm -v $PWD:/src trailofbits/eth-security-toolbox"
+  },
+  "devDependencies": {
+    "@ethersproject/abi":"^5.7.0",
+    "@ethersproject/providers":"^5.7.2",
+    "@nomicfoundation/hardhat-toolbox":"^5.0.0",
+    "@nomiclabs/hardhat-etherscan":"^3.1.8",
+    "@typechain/ethers-v6":"^0.5.1",
+    "@typechain/hardhat":"^9.1.0",
+    "chai": "^4.3.6",
+    "ethers":"^6.13.4",
+    "hardhat":"^2.22.13",
+    "hardhat-gas-reporter":"^1.0.8",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.24",
+    "solhint": "^3.3.7",
+    "solhint-plugin-prettier": "^0.0.5",
+    "solidity-coverage": "^0.8.12",
+    "typechain": "^8.1.0"
+  },
+  "dependencies": {
+    "@axelar-network/axelar-gmp-sdk-solidity": "^5.9.0",
+    "@openzeppelin/contracts": "^5.0.0",
+    "dotenv": "^16.0.3"
+  },
+  "lint-staged": {
+    "*.{js,json,yml,yaml}": [
+      "prettier --write"
+    ],
+    "*.sol": [
+      "prettier --write",
+      "solhint"
+    ]
+  }
+}
